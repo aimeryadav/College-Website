@@ -1,0 +1,397 @@
+/* ---------- Design tokens & base ---------- */
+:root {
+  --font-size: 18px;
+  --background: #ffffff;
+  --foreground: #0b0b0b;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --accent: #f1f5f9;
+  --primary: #9e1d65;
+  --radius: 12px;
+  --shadow: 0 6px 24px rgba(16, 24, 40, 0.08),
+    0 2px 6px rgba(16, 24, 40, 0.04);
+}
+
+html {
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+html.theme-dark {
+  --background: #0b0b0f;
+  --foreground: #eef1f5;
+  --card: #13151a;
+  --border: #23262d;
+  --accent: #151925;
+  --primary: #d54a8e;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  filter: brightness(0.96);
+}
+
+code {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  padding: 0.08rem 0.25rem;
+  border-radius: 6px;
+  background: rgba(148, 163, 184, 0.16);
+}
+
+/* ---------- Layout wrappers ---------- */
+
+#root {
+  min-height: 100vh;
+}
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  min-height: calc(100vh - 64px - 200px);
+}
+
+.container {
+  width: min(1120px, 92vw);
+  margin-inline: auto;
+}
+
+/* ---------- Text helpers ---------- */
+
+.small {
+  font-size: 0.85rem;
+}
+
+.muted {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+/* ---------- Buttons / chips ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  font: inherit;
+}
+
+.btn-ghost {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* ---------- Navbar ---------- */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in oklab, var(--background) 85%, transparent);
+  backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.brand .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), #c92a7c);
+}
+
+.navlinks {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.navlinks a {
+  color: var(--foreground);
+  opacity: 0.86;
+  font-weight: 600;
+}
+
+.navlinks a.active {
+  opacity: 1;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------- Hero (home) ---------- */
+
+.hero {
+  position: relative;
+}
+
+.hero .inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+  align-items: center;
+  padding-block: 64px;
+}
+
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  margin: 0 0 8px;
+}
+
+.hero .lead {
+  opacity: 0.9;
+  max-width: 60ch;
+}
+
+.hero-visual {
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: conic-gradient(
+    from 220deg at 55% 45%,
+    rgba(158, 29, 101, 0.35),
+    rgba(139, 92, 246, 0.45),
+    rgba(158, 29, 101, 0.35)
+  );
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Generic section padding ---------- */
+
+.section {
+  padding-block: 40px;
+}
+
+/* ---------- Faculty cards ---------- */
+
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1000px) {
+  .faculty-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .faculty-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.person-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.person-card .top {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #faf5ff, #fff0f6);
+  border: 1px solid var(--border);
+  background-size: cover;
+  background-position: center;
+}
+
+.person-card .body {
+  padding: 16px;
+}
+
+.tag {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 1px solid var(--border);
+}
+
+.tag-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* ---------- Page hero (admissions / programs / research etc.) ---------- */
+
+.page-hero {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--accent);
+}
+
+.page-hero h1 {
+  font-family: "Playfair Display", serif;
+  margin: 0 0 8px;
+}
+
+.page-hero p {
+  max-width: 70ch;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* ---------- Cards grid (programs / research) ---------- */
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 960px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card .thumb {
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #faf5ff, #fff0f6);
+  border-bottom: 1px solid var(--border);
+}
+
+.card .body {
+  padding: 20px;
+}
+
+.meta {
+  font-size: 0.92rem;
+  opacity: 0.8;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ---------- Simple cards (admissions, filters, notices etc.) ---------- */
+
+.simple-card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding-block: 40px;
+  margin-top: 40px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+.stack-4 {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+/* ---------- Responsive tweaks ---------- */
+
+@media (max-width: 960px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar .inner {
+    gap: 12px;
+  }
+
+  .navlinks {
+    display: none; /* you can later add a mobile menu here */
+  }
+
+  .hero .inner {
+    grid-template-columns: 1fr;
+    padding-block: 40px;
+  }
+}
